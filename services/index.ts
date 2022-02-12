@@ -1,7 +1,7 @@
 import { request, gql } from 'graphql-request'
+const graphqlAPI: any = process.env.NEXT_PUBLIC_GRAPCMS_API
 
 export const getPosts = async () => {
-  const graphqlAPI: any = process.env.NEXT_PUBLIC_GRAPCMS_API
   const query = gql`
     query PostQuery {
       postsConnection {
@@ -33,6 +33,53 @@ export const getPosts = async () => {
   `
 
   const response = await request(graphqlAPI, query)
-  console.log('response.postsConnection.edges', response.postsConnection.edges)
   return response.postsConnection.edges
+}
+
+export const getRecentPosts = async () => {
+  const query = gql`
+     query GetPostDetails() {
+      posts(
+        orderBy: createdAt_ASC
+        last: 3
+      ) {
+        title
+        featuredImage {
+          url
+        }
+        createdAt
+        slug
+      }
+    }
+  `
+
+  const response = await request(graphqlAPI, query)
+  return response.posts
+}
+
+export const getSimilarPosts = async (categories: any, slug: string) => {
+  const query = gql`
+    query GetPostDetails($categories: [String], $slug: String) {
+      posts(
+        where: {
+          slug_not: $slug,
+          AND: {
+            categories_some: [slug_in: $categories]
+          }
+        }
+        orderBy: createdAt_DESC,
+        last: 3
+      ) {
+        title
+        featuredImage {
+          url
+        }
+        createdAt
+        slug
+      }
+    }
+  `
+
+  const response = await request(graphqlAPI, query)
+  return response.posts
 }
