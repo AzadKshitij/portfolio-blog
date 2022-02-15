@@ -1,18 +1,7 @@
 import Head from 'next/head'
 
-import { PostCard, PostWidgets, Categories } from '../components'
+import { PostCard, PostWidget, Categories } from '../components'
 import { getPosts } from '../services'
-
-const posts = [
-  {
-    title: 'Hello Next.js',
-    excerpt: 'This is the content of the first post',
-  },
-  {
-    title: 'Hello Next.js',
-    excerpt: 'asdn alkjsndljhjkda kdakjahsdjh dk',
-  },
-]
 
 export default function Home({ posts }: { posts: any }) {
   return (
@@ -30,7 +19,13 @@ export default function Home({ posts }: { posts: any }) {
         </div>
         <div className=" col-span-1  lg:col-span-4 ">
           <div className=" relative top-8 lg:sticky ">
-            <PostWidgets />
+            <PostWidget
+              slug={''}
+              categories={{
+                name: '',
+                slug: '',
+              }}
+            />
             <Categories />
           </div>
         </div>

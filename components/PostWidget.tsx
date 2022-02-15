@@ -14,8 +14,18 @@ type post = {
     url: string
   }
 }
+type categories = {
+  name: string
+  slug: string
+}
 
-function PostWidget({ categories, slug }: { categories: any; slug: string }) {
+function PostWidget({
+  categories,
+  slug,
+}: {
+  categories: categories
+  slug: string
+}) {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
@@ -52,9 +62,11 @@ function PostWidget({ categories, slug }: { categories: any; slug: string }) {
             <p className="font-xs text-gray-500">
               {moment(post.createdAt).format('MMM DD, YYYY')}
             </p>
-            <Link href={`/post/${post.slug}`} className="text-md" key={index}>
-              {post.title}
-            </Link>
+            <text className="text-md">
+              <Link href={`/post/${post.slug}`} key={index}>
+                {post.title}
+              </Link>
+            </text>
           </div>
         </div>
       ))}
