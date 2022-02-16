@@ -15,6 +15,14 @@ export type post = {
   }
 }
 
+export type author = {
+  name: string
+  image: {
+    url: string
+  }
+  bio: string
+}
+
 export type postComplete = {
   author: {
     bio: string
