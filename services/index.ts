@@ -37,7 +37,6 @@ export const getPosts = async () => {
 }
 
 export const getPostDetails = async (slug: string) => {
-  console.log('getPostDetails', slug)
   const query = gql`
     query PostQuery($slug: String!) {
       post(where: { slug: $slug }) {
@@ -62,6 +61,13 @@ export const getPostDetails = async (slug: string) => {
         }
         content {
           raw
+          references {
+            ... on CodeBlock {
+              id
+              code
+              language
+            }
+          }
         }
       }
     }

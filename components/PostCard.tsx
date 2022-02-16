@@ -3,32 +3,11 @@ import moment from 'moment'
 import Link from 'next/link'
 import Image from 'next/image'
 
-type Post = {
-  author: {
-    bio: string
-    id: string
-    name: string
-    image: {
-      url: string
-    }
-  }
-  createdAt: string
-  title: string
-  slug: string
-  excerpt: string
-  featuredImage: {
-    url: string
-  }
-  categories: {
-    name: string
-    slug: string
-  }
-}
+import { post, category, postComplete } from '../types'
 
-function PostCard({ post }: { post: Post }) {
-  console.log(post)
+function PostCard({ post }: { post: postComplete }) {
   return (
-    <div className="mb-8 rounded-lg bg-primary bg-primaryLight p-0 pb-12 shadow-lg lg:p-8">
+    <div className="mb-8 rounded-lg bg-primary p-0 pb-12 shadow-lg lg:p-8">
       <div className=" relative mb-6 overflow-hidden pb-80 shadow-md ">
         <img
           src={post.featuredImage.url}

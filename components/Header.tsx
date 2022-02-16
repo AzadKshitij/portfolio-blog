@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { getCategories } from '../services'
-
-type category = {
-  name: string
-  slug: string
-}
+import { category } from '../types'
 
 function Header() {
   const [categories, setCategories] = useState([])
@@ -14,7 +10,6 @@ function Header() {
     getCategories().then((res) => {
       setCategories(res)
     })
-    console.log(categories)
   }, [])
 
   return (
