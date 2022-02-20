@@ -1,6 +1,17 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*": ["pages/*"],
+      "@blog/*": ["blog/*"],
+      "@components/*": ["components/*"],
+      "@public/*": ["public/*"],
+      "@shared/*": ["shared/*"],
+      "@styles/*": ["styles/*"],
+      "@services/*": ["services/*"],
+      "@types/*": ["types/*"]
+    },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,

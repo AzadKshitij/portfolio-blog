@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 
-import { getPosts, getPostDetails } from '../../services'
+import { getPosts, getPostDetails } from '../../../services'
 
 import {
   Categories,
@@ -9,10 +9,10 @@ import {
   Author,
   Comments,
   CommentsForm,
-} from '../../components'
+} from '../../../components'
 import { GetStaticPaths, GetStaticProps } from 'next'
 
-import { postComplete } from '../../types'
+import { postComplete } from '../../../types'
 
 type params = {
   slug: string

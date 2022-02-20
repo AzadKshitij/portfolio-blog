@@ -5,6 +5,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animation: {
+        spinO: 'spinO 1s linear',
+      },
+      keyframes: {
+        spinO: {
+          '100%': {
+            transform: 'rotate(360deg)',
+          },
+        },
+      },
       colors: {
         transparent: 'transparent',
         current: 'currentColor',
@@ -14,6 +24,8 @@ module.exports = {
         primaryLight: '#181A1B',
         link: '#674EE3',
         title: '#FA58B6',
+        text: '#181A1B',
+        background: '#FA58B6',
         code_block: '#242C3A',
       },
     },
