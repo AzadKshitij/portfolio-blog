@@ -70,12 +70,12 @@ function Header() {
                 {({ open }) =>
                   open ? (
                     <XIcon
-                      className="trans ml-2 -mr-1 h-5 w-5 animate-spinO bg-primaryLight text-violet-200 transition-all hover:text-violet-100"
+                      className="ml-2 -mr-1 h-5 w-5 animate-spinO bg-primaryLight text-violet-200 transition-all hover:text-violet-100"
                       aria-hidden="true"
                     />
                   ) : (
                     <MenuIcon
-                      className="trans ml-2 -mr-1 h-5 w-5 bg-primaryLight text-violet-200 transition-all hover:text-violet-100"
+                      className="ml-2 -mr-1 h-5 w-5 bg-primaryLight text-violet-200 transition-all hover:text-violet-100"
                       aria-hidden="true"
                     />
                   )

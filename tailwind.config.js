@@ -2,6 +2,7 @@ module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
+    './sections/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -27,6 +28,14 @@ module.exports = {
         text: '#181A1B',
         background: '#FA58B6',
         code_block: '#242C3A',
+      },
+      fontFamily: {
+        lora: ['Lora', 'serif'],
+        montserrat: ['Montserrat', 'serif'],
+        roboto: ['Roboto', 'serif'],
+        cursive: ['Cedarville Cursive'],
+        lobster: ['Lobster'],
+        rancho: ['Rancho'],
       },
     },
   },

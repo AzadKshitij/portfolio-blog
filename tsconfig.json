@@ -10,6 +10,7 @@
       "@shared/*": ["shared/*"],
       "@styles/*": ["styles/*"],
       "@services/*": ["services/*"],
+      "@sections/*": ["sections/*"],
       "@types/*": ["types/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
