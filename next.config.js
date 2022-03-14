@@ -4,4 +4,5 @@ module.exports = {
     domains: ['media.graphcms.com'],
   },
   reactStrictMode: true,
+  experimental: { optimizeCss: true },
 }
