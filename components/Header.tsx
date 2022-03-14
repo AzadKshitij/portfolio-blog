@@ -20,7 +20,7 @@ function Header() {
       <div className="inline-block w-full border-b border-blue-400 py-8 ">
         <div className=" float-left block ">
           <Link href="/">
-            <span className=" cursor-pointer text-2xl font-bold  text-white md:text-4xl">
+            <span className=" cursor-pointer text-2xl font-bold  text-black md:text-4xl">
               Azad Kshitij
             </span>
           </Link>
@@ -29,7 +29,7 @@ function Header() {
           <Link href={`/blog`} key="blog">
             <span
               className="mt-2 ml-4 cursor-pointer align-middle text-lg font-semibold
-                 text-white md:float-right"
+                 text-black md:float-right"
             >
               Blog
             </span>
@@ -38,7 +38,7 @@ function Header() {
             <Link href={`/category/${category.slug}`} key={category.slug}>
               <span
                 className="mt-2 ml-4 cursor-pointer align-middle text-lg font-semibold
-                 text-white md:float-right"
+                 text-black md:float-right"
               >
                 {category.name}
               </span>
@@ -49,24 +49,7 @@ function Header() {
         <div className="z-10 float-right lg:hidden">
           <Menu as="div" className="relative z-10 inline-block">
             <div>
-              <Menu.Button className="inline-flex w-full justify-center rounded-md bg-primaryLight bg-opacity-20 px-2 py-2 text-sm font-medium text-white hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                {/* <MenuIcon
-                  className="ml-2 -mr-1 h-5 w-5 bg-primaryLight text-violet-200 hover:text-violet-100"
-                  aria-hidden="true"
-                /> */}
-                {/* {({ open }) =>
-                  open ? (
-                    <XIcon
-                      className="trans ml-2 -mr-1 h-5 w-5 bg-primaryLight text-violet-200 transition-all hover:text-violet-100"
-                      aria-hidden="true"
-                    />
-                  ) : (
-                    <XIcon
-                      className="trans ml-2 -mr-1 h-5 w-5 bg-primaryLight text-violet-200 transition-all hover:text-violet-100"
-                      aria-hidden="true"
-                    />
-                  )
-                } */}
+              <Menu.Button className="inline-flex w-full justify-center rounded-md bg-white bg-opacity-20 px-2 py-2 text-sm font-medium text-black hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-opacity-75">
                 {({ open }) =>
                   open ? (
                     <XIcon
@@ -91,14 +74,14 @@ function Header() {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-500 rounded-md bg-primaryLight shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-500 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <Link href={`/blog`} key="blog">
                   <div className="px-1 py-1">
                     <Menu.Item>
                       {({ active }) => (
                         <button
                           className={`${
-                            active ? ' bg-background text-white' : ' text-white'
+                            active ? ' bg-background text-black' : ' text-black'
                           } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                         >
                           {/* {active ? (
@@ -126,8 +109,8 @@ function Header() {
                           <button
                             className={`${
                               active
-                                ? ' bg-background text-white'
-                                : ' text-white'
+                                ? ' bg-background text-black'
+                                : ' text-black'
                             } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                           >
                             {/* {active ? (

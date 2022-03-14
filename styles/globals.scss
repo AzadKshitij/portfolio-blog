@@ -12,6 +12,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rancho&display=swap');
 
+[role='tab'].active {
+  @apply border-red-600 text-red-600 hover:border-red-600 hover:text-red-600 dark:border-red-500 dark:text-red-500 dark:hover:border-red-500 dark:hover:text-red-500;
+}
+
 .banner-flex {
   justify-content: space-between;
   display: flex;

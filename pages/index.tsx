@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { PostCard, PostWidget, Categories } from '@components/index'
 import { getPosts } from '@services/index'
 
-import { Banner, About, Brand, Services } from '@sections/index'
+import { Banner, About, Brand, Services, Projects } from '@sections/index'
 
 export default function Home({ posts }: { posts: any }) {
   return (
@@ -20,6 +20,7 @@ export default function Home({ posts }: { posts: any }) {
       <About />
       <Brand />
       <Services />
+      <Projects />
       {/* <div className="grid grid-cols-1 gap-12 lg:grid-cols-12  ">
         <div className=" col-span-1 lg:col-span-8 ">
           {posts.map((post: any, index: number) => (
