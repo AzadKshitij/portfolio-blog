@@ -7,43 +7,84 @@ export default function Skills() {
   let [skills] = useState([
     {
       title: 'HTML5',
-      uri: '/work/001.png',
+      uri: '/skills/html.png',
       bg: '#FFF4F2',
     },
     {
       title: 'CSS3',
-      uri: '/work/001.png',
+      uri: '/skills/css.png',
       bg: '#DDE8EE',
     },
     {
       title: 'Javascript',
-      uri: '/work/001.png',
+      uri: '/skills/js.png',
       bg: '#FDF7D1',
     },
     {
       title: 'React JS',
-      uri: '/work/001.png',
+      uri: '/skills/react.png',
+      bg: '#ECFCFF',
+    },
+    {
+      title: 'React Native',
+      uri: '/skills/react.png',
       bg: '#ECFCFF',
     },
     {
       title: 'Node JS',
-      uri: '/work/001.png',
+      uri: '/skills/node.png',
       bg: '#E7FDF3',
     },
     {
       title: 'Figma',
-      uri: '/work/001.png',
+      uri: '/skills/figma.png',
       bg: '#FCECE7',
     },
     {
       title: 'git',
-      uri: '/work/001.png',
+      uri: '/skills/git.png',
       bg: '#FCE8E3',
     },
+
     {
-      title: 'React Native',
-      uri: '/work/001.png',
-      bg: '#ECFCFF',
+      title: 'C#',
+      uri: '/skills/csharp.png',
+      bg: '#f4e0ff',
+    },
+    {
+      title: 'C++',
+      uri: '/skills/cpp.png',
+      bg: '#c7d9ee',
+    },
+    {
+      title: 'Django',
+      uri: '/skills/django.png',
+      bg: '#d1ffef',
+    },
+    {
+      title: 'Flask',
+      uri: '/skills/flask.png',
+      bg: '#e6e6e6',
+    },
+    {
+      title: 'Godot',
+      uri: '/skills/godot.png',
+      bg: '#bddaff',
+    },
+    {
+      title: 'Unity',
+      uri: '/skills/unity.png',
+      bg: '#dbdbdb',
+    },
+    {
+      title: 'Next JS',
+      uri: '/skills/nextjs.png',
+      bg: '#e4e4e4',
+    },
+    {
+      title: 'Python',
+      uri: '/skills/python.png',
+      bg: '#f8ff96',
     },
   ])
 
@@ -80,14 +121,14 @@ export default function Skills() {
       </p>
 
       <div className="flex flex-col flex-wrap space-x-10 md:flex-row">
-        <div className="grid grid-flow-row grid-cols-4 grid-rows-4 gap-8">
+        <div className="grid grid-flow-row grid-cols-5  gap-8">
           {Object.values(skills).map((item, idx) => (
             <div className="flex flex-col items-center justify-center">
               <div
                 style={{ backgroundColor: item.bg }}
-                className={`flex h-24 w-24 items-center justify-center overflow-hidden rounded-full`}
+                className={`flex h-16 w-16 items-center justify-center overflow-hidden rounded-full`}
               >
-                <Image src={item.uri} height={50} width={50} />
+                <Image src={item.uri} height={40} width={40} />
               </div>
               <p className=" mt-2 font-roboto text-sm font-normal text-gray-500 ">
                 {item.title}

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { PostCard, PostWidget, Categories } from '@components/index'
+import { PostCard, PostWidget, Categories, Social } from '@components/index'
 import { getPosts } from '@services/index'
 
 import {
@@ -10,6 +10,7 @@ import {
   Services,
   Projects,
   Skills,
+  Contact,
 } from '@sections/index'
 
 export default function Home({ posts }: { posts: any }) {
@@ -23,12 +24,17 @@ export default function Home({ posts }: { posts: any }) {
         <title>Azad Kshitij</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      {/* <Social /> */}
       <Banner />
       <About />
       <Brand />
       <Services />
       <Projects />
       <Skills />
+      <Contact />
+      <div className="flex flex-row items-center justify-center">
+        <p className="">Copyright © 2020-2022 Kshitij</p>
+      </div>
       {/* <div className="grid grid-cols-1 gap-12 lg:grid-cols-12  ">
         <div className=" col-span-1 lg:col-span-8 ">
           {posts.map((post: any, index: number) => (
