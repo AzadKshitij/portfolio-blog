@@ -1,3 +1,4 @@
+// @ts-ignore
 import React, { FunctionComponent } from 'react'
 
 import { getPosts, getPostDetails } from '../../../services'
@@ -79,6 +80,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   })
   return {
     paths: paths_arr,
-    fallback: true,
+    fallback: false,
   }
 }

@@ -18,11 +18,12 @@ export type post = {
 }
 
 export type author = {
+  bio: string
+  id: string
   name: string
   image: {
     url: string
   }
-  bio: string
 }
 
 export type postComplete = {
