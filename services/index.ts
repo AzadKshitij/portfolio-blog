@@ -4,7 +4,7 @@ const graphqlAPI: any = process.env.NEXT_PUBLIC_GRAPCMS_API
 export const getPosts = async () => {
   const query = gql`
     query PostQuery {
-      postsConnection {
+      postsConnection(orderBy: createdAt_DESC) {
         edges {
           node {
             author {
@@ -80,7 +80,7 @@ export const getRecentPosts = async () => {
   const query = gql`
      query GetPostDetails() {
       posts(
-        orderBy: createdAt_ASC
+        orderBy: createdAt_DESC
         last: 3
       ) {
         title
@@ -97,17 +97,21 @@ export const getRecentPosts = async () => {
   return response.posts
 }
 
-export const getSimilarPosts = async (categories: any, slug: string) => {
+export const getSimilarPosts = async (categories: string[], slug: string) => {
+  console.log(
+    '🚀 ~ file: index.ts ~ line 101 ~ getSimilarPosts ~ categories',
+    categories
+  )
+  console.log('🚀 ~ file: index.ts ~ line 101 ~ getSimilarPosts ~ slug', slug)
+
   const query = gql`
-    query GetPostDetails($categories: [String], $slug: String) {
+    query GetPostDetails($slug: String, $categories: [String!]) {
       posts(
         where: {
-          slug_not: $slug,
-          AND: {
-            categories_some: [slug_in: $categories]
-          }
+          slug_not: $slug
+          AND: { categories_some: { slug_in: $categories } }
         }
-        orderBy: createdAt_DESC,
+        orderBy: createdAt_DESC
         last: 3
       ) {
         title
@@ -120,8 +124,37 @@ export const getSimilarPosts = async (categories: any, slug: string) => {
     }
   `
 
-  const response = await request(graphqlAPI, query)
+  const response = await request(graphqlAPI, query, { slug, categories })
+  console.log(
+    '🚀 ~ file: index.ts ~ line 127 ~ getSimilarPosts ~ response',
+    response
+  )
   return response.posts
+}
+
+export const getFeaturedPosts = async () => {
+  const query = gql`
+    query GetFeaturesPost() {
+      posts(where: {featured: true}) {
+        author {
+          name
+          image {
+            url
+          }
+        }
+        featuredImage {
+          url
+        }
+        title
+        slug
+        createdAt
+      }
+    }
+  `
+
+  const result = await request(graphqlAPI, query)
+
+  return result.posts
 }
 
 export const getCategories = async () => {

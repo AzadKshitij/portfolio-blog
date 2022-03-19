@@ -1,9 +1,11 @@
 import { ElementNode } from '@graphcms/rich-text-types'
 
-export type category = {
-  name: string
-  slug: string
-}
+export type category = [
+  {
+    name: string
+    slug: string
+  }
+]
 
 export type post = {
   id: number
@@ -39,10 +41,12 @@ export type postComplete = {
   featuredImage: {
     url: string
   }
-  categories: {
-    name: string
-    slug: string
-  }
+  categories: [
+    {
+      name: string
+      slug: string
+    }
+  ]
   content: {
     raw: {
       children: ElementNode[]

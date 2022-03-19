@@ -7,8 +7,6 @@ import {
   PostWidget,
   PostDetails,
   Author,
-  Comments,
-  CommentsForm,
 } from '../../../components'
 import { GetStaticPaths, GetStaticProps } from 'next'
 
@@ -18,10 +16,10 @@ type params = {
   slug: string
 }
 
-function PostDetail({ post: post }: { post: postComplete }) {
+function Slug({ post: post }: { post: postComplete }) {
   return (
     <>
-      <div className="container mx-auto mb-8 px-10">
+      <div className="container mx-auto bg-bg px-2 pb-8 md:px-10">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="col-span-1 lg:col-span-8">
             <PostDetails post={post} />
@@ -32,10 +30,10 @@ function PostDetail({ post: post }: { post: postComplete }) {
           </div>
           <div className="col-span-1 lg:col-span-4">
             <div className="relative top-8 lg:sticky">
-              {/* <PostWidget
-                // slug={post.slug}
-                // categories={post.categories.map((category) => category.slug)}
-              /> */}
+              <PostWidget
+                slug={post.slug}
+                categories={post.categories.map((category) => category.slug)}
+              />
               <Categories />
             </div>
           </div>
@@ -45,7 +43,7 @@ function PostDetail({ post: post }: { post: postComplete }) {
   )
 }
 
-export default PostDetail
+export default Slug
 
 // Fetch data at build time
 export async function getStaticProps({ params: params }: { params: params }) {

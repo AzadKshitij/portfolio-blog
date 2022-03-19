@@ -18,16 +18,40 @@ export default function About() {
             LET ME INTRODUCE MYSELF
           </p>
           <p className="my-5 font-rancho text-2xl  text-gray-600">
-            Hello my name is Azad Kshitij and I am a full-stack devloper and can
+            Hello my name is Kshitij and I am a full-stack developer and can
             make websites frontend using HTML, CSS, JavaScript and can make
             backend using JavaScript and python (using django framework).
           </p>
           <p className="my-5 font-rancho text-2xl text-gray-600">
             Now days I am learning flask to make simple websites without SQL
             data base if you have any type of work according to my skills then{' '}
-            <a href=""> contact me </a> or hire my on
-            <a href=""> Fiver</a> or <a href=""> Freelanser.com</a>. If you want
-            to know my other skills then check out my cv.
+            <a
+              href=""
+              className=" mb-4 text-link transition duration-200 ease-in hover:text-title"
+              rel="noopener noreferrer"
+            >
+              {' '}
+              contact me{' '}
+            </a>{' '}
+            or hire my on
+            <a
+              href=""
+              className=" mb-4 text-link transition duration-200 ease-in hover:text-title"
+              rel="noopener noreferrer"
+            >
+              {' '}
+              Fiver
+            </a>{' '}
+            or{' '}
+            <a
+              href=""
+              className=" mb-4 text-link transition duration-200 ease-in hover:text-title"
+              rel="noopener noreferrer"
+            >
+              {' '}
+              Freelanser.com
+            </a>
+            . If you want to know my other skills then check out my cv.
           </p>
           <div className="">
             <div className="">

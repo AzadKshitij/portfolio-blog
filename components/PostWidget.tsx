@@ -11,60 +11,86 @@ function PostWidget({
   categories,
   slug,
 }: {
-  categories: category
+  categories: string[]
   slug: string
 }) {
-  const [posts, setPosts] = useState([])
+  const [relatedPosts, setRelatedPosts] = useState([])
 
   useEffect(() => {
+    console.log('fetching related posts')
     if (slug) {
-      getSimilarPosts(categories, slug).then((res) => {
-        setPosts(res)
+      getSimilarPosts(categories, slug).then((result) => {
+        console.log(
+          '🚀 ~ file: PostWidget.tsx ~ line 25 ~ getSimilarPosts ~ result',
+          result
+        )
+        setRelatedPosts(result)
       })
     } else {
-      getRecentPosts().then((res) => {
-        setPosts(res)
+      getRecentPosts().then((result) => {
+        console.log(
+          '🚀 ~ file: PostWidget.tsx ~ line 31 ~ getRecentPosts ~ result',
+          result
+        )
+        setRelatedPosts(result)
       })
     }
-  }, [slug])
+  }, [slug, categories])
 
   return (
-    <div className="mb-8 rounded-lg bg-primary p-8 pb-12 shadow-lg">
-      <h3 className="mb-8 border-b pb-4 text-xl font-semibold text-white">
+    <div className="mb-8 rounded-lg border-2 bg-primary p-8 pb-12 shadow-lg">
+      <h3 className="mb-8 border-b pb-4 text-xl font-semibold text-black">
         {slug ? 'Related Posts' : 'Recent Posts'}
       </h3>
-      {posts.map((post: post, index) => (
-        <Link href={`/post/${post.slug}`} key={index}>
-          <div
-            key={index}
-            className="mb-4 flex w-full cursor-pointer items-center"
-          >
-            <div className="w-16 flex-none">
-              <Image
-                // loader={grpahCMSImageLoader}
-                alt={post.title}
-                height="60px"
-                width="60px"
-                // unoptimized
-                className="rounded-full align-middle"
-                src={post.featuredImage.url}
-              />
+      {relatedPosts.map((post: post, index) => (
+        <div
+          className="rounded-lg p-2 transition duration-300 ease-in hover:bg-bg"
+          key={index}
+        >
+          <Link href={`blog/post/${post.slug}`} key={index} passHref>
+            <div
+              key={index}
+              className=" flex w-full cursor-pointer items-center"
+            >
+              <div className="flex-none">
+                <Image
+                  // loader={grpahCMSImageLoader}
+                  alt={post.title}
+                  height="60px"
+                  width="60px"
+                  // unoptimized
+                  className="rounded-full align-middle"
+                  src={post.featuredImage.url}
+                />
+              </div>
+              <div className="ml-4 flex-grow">
+                <p className="font-xs text-gray-800">
+                  {moment(post.createdAt).format('MMM DD, YYYY')}
+                </p>
+                <text className="text-md text-gray-900">
+                  <Link href={`blog/post/${post.slug}`} key={index}>
+                    {post.title}
+                  </Link>
+                </text>
+              </div>
             </div>
-            <div className="ml-4 flex-grow">
-              <p className="font-xs text-gray-200">
-                {moment(post.createdAt).format('MMM DD, YYYY')}
-              </p>
-              <text className="text-md text-white">
-                <Link href={`/post/${post.slug}`} key={index}>
-                  {post.title}
-                </Link>
-              </text>
-            </div>
-          </div>
-        </Link>
+          </Link>
+        </div>
       ))}
     </div>
   )
 }
 
 export default PostWidget
+
+// export function getServerSideProps(ctx: { params: any }) {
+//   const { params } = ctx
+//   const { id } = params
+
+//   return {
+//     props: {
+//       // Pass id as key here, remember that the file name is [id].tsx
+//       key: id,
+//     }, // will be passed to the page component as props
+//   }
+// }

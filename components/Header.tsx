@@ -1,13 +1,22 @@
 import React, { useState, useEffect, useRef, Fragment, createRef } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { Menu, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/solid'
 import { getCategories } from '../services'
-import { category } from '../types'
+
+type category = {
+  slug: string
+  name: string
+}
 
 function Header() {
   const [categories, setCategories] = useState([])
   const transition = createRef()
+
+  const router = useRouter()
+
+  let bg = router.route.match('blog') ? 'bg-[#f5f5f5]' : 'bg-white'
 
   useEffect(() => {
     getCategories().then((res) => {
@@ -16,12 +25,12 @@ function Header() {
   }, [])
 
   return (
-    <div className=" container mx-auto mb-8 px-10 ">
+    <div className={`container mx-auto px-10 pb-8 ${bg} `}>
       <div className="inline-block w-full border-b border-blue-400 py-8 ">
         <div className=" float-left block ">
           <Link href="/">
             <span className=" cursor-pointer text-2xl font-bold  text-black md:text-4xl">
-              Azad Kshitij
+              Kshitij
             </span>
           </Link>
         </div>

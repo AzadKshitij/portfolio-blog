@@ -7,29 +7,21 @@ import { post, category, postComplete } from '../types'
 
 function PostCard({ post }: { post: postComplete }) {
   return (
-    <div className="mb-8 rounded-lg bg-primary p-0 pb-12 shadow-lg lg:p-8">
+    <div className="mb-8 rounded-lg border-2 bg-primary p-0 pb-12 shadow-lg lg:p-8 ">
       <div className=" relative mb-6 overflow-hidden pb-80 shadow-md ">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={post.featuredImage.url}
           alt={post.title}
           className="absolute h-80 w-full rounded-t-lg object-cover  object-top shadow-lg lg:rounded-lg"
         />
       </div>
-      <h1 className="link mb-8 cursor-pointer text-ellipsis  text-center text-3xl font-semibold text-white transition  duration-700 hover:text-title">
-        <Link href={`/post/${post.slug}`}>{post.title}</Link>
+      <h1 className="link mb-8 cursor-pointer text-ellipsis  text-center text-3xl font-semibold text-mainTitle transition  duration-700 hover:text-title">
+        <Link href={`/blog/post/${post.slug}`}>{post.title}</Link>
       </h1>
 
       <div className="mb-8 block w-full items-center justify-center text-center lg:flex">
         <div className="mb-4 mr-8 flex w-full items-center justify-center lg:mb-0 lg:w-auto">
-          {/* <Image
-            unoptimized
-            loader={grpahCMSImageLoader}
-            alt={post.author.name}
-            height="30px"
-            width="30px"
-            className="rounded-full align-middle"
-            src={post.author.photo.url}
-          /> */}
           <Image
             // unoptimized
             // loader={grpahCMSImageLoader}
@@ -39,14 +31,14 @@ function PostCard({ post }: { post: postComplete }) {
             className="rounded-full align-middle"
             src={post.author.image.url}
           />
-          <p className="ml-2 inline align-middle text-lg font-medium text-gray-100">
+          <p className="ml-2 inline align-middle text-lg font-medium text-gray-900">
             {post.author.name}
           </p>
         </div>
-        <div className="font-medium text-gray-100">
+        <div className="font-medium text-gray-900">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="mr-2 inline h-6 w-6 text-pink-500"
+            className="mr-2 inline h-6 w-6 text-background"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -63,12 +55,12 @@ function PostCard({ post }: { post: postComplete }) {
           </span>
         </div>
       </div>
-      <p className="mb-8 px-4 text-center text-lg font-normal text-gray-100 lg:px-20">
+      <p className="mb-8 px-4 text-center text-lg font-normal text-gray-800 lg:px-20">
         {post.excerpt}
       </p>
       <div className="text-center">
-        <Link href={`/post/${post.slug}`}>
-          <span className="ease inline-block transform cursor-pointer rounded-full bg-pink-600 px-8 py-3 text-lg font-medium text-white transition duration-500 hover:-translate-y-1">
+        <Link href={`blog/post/${post.slug}`}>
+          <span className="ease inline-block transform cursor-pointer rounded-full bg-background px-8 py-3 text-lg font-medium text-white transition duration-500 hover:-translate-y-1 hover:bg-mainTitle">
             Continue Reading
           </span>
         </Link>

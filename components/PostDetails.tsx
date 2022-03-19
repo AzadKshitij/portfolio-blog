@@ -1,40 +1,68 @@
+// @ts-nocheck
 import moment from 'moment'
 import React, { useEffect } from 'react'
 import Image from 'next/image'
 import Prism from 'prismjs'
 import { RichText } from '@graphcms/rich-text-react-renderer'
-import { EmbedProps } from '@graphcms/rich-text-types'
+import {
+  EmbedProps,
+  Reference,
+  EmbedReferences,
+} from '@graphcms/rich-text-types'
 import { postComplete } from '../types'
-import Link from 'next/link'
+import Link, { LinkProps } from 'next/link'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+
+type a = {
+  href: LinkProps['href'] | any
+  className?: string
+  children: any
+  rel?: string
+  id?: string
+  title?: string
+  openInNewTab?: boolean
+}
+
+type img = {
+  src: string
+  altText?: string
+  handle?: any
+  height?: number
+  width?: number
+}
+
+type code = {
+  language: any
+  code: any
+}
 
 const renderers = {
   h1: ({ children: children }: { children: any }) => (
-    <h1 className=" b-4 text-2xl font-semibold text-white">{children}</h1>
+    <h1 className="mt-4 text-2xl font-semibold text-black">{children}</h1>
   ),
   h2: ({ children: children }: { children: any }) => (
-    <h2 className="mb-4 text-xl font-semibold text-white">{children}</h2>
+    <h2 className="mt-4 text-xl font-semibold text-black">{children}</h2>
   ),
   h3: ({ children: children }: { children: any }) => (
-    <h3 className=" b-4 text-lg font-semibold text-white">{children}</h3>
+    <h3 className="mt-4 text-lg font-semibold text-black">{children}</h3>
   ),
   h4: ({ children: children }: { children: any }) => (
-    <h4 className=" b-4 text-base font-semibold text-white">{children}</h4>
+    <h4 className="mt-4 text-base font-semibold text-black">{children}</h4>
   ),
   h5: ({ children: children }: { children: any }) => (
-    <h5 className=" b-4 text-sm font-semibold text-white">{children}</h5>
+    <h5 className="mt-4 text-sm font-semibold text-black">{children}</h5>
   ),
   h6: ({ children: children }: { children: any }) => (
-    <h6 className=" b-4 text-xs font-semibold text-white">{children}</h6>
+    <h6 className="mt-4 text-xs font-semibold text-black">{children}</h6>
   ),
-  a: ({ children, openInNewTab, href, rel, ...rest }) => {
+  a: ({ children, openInNewTab, href, rel }: a) => {
     if (href.match(/^https?:\/\/|^\/\//i)) {
       return (
         <a
           href={href}
-          className=" mb-4 text-link"
+          className=" mb-4 text-link transition duration-200 ease-in hover:text-title"
           target={openInNewTab ? '_blank' : '_self'}
-          rel={rel || 'noopener noreferrer'}
-          {...rest}
+          rel={'noopener noreferrer'}
         >
           {children}
         </a>
@@ -43,32 +71,37 @@ const renderers = {
 
     return (
       <Link href={href}>
-        <a {...rest} className=" mb-4 text-link">
+        <a
+          rel={rel || 'noopener noreferrer'}
+          className=" mb-4 text-link transition duration-200 ease-in hover:text-title"
+        >
           {children}
         </a>
       </Link>
     )
   },
   ul: ({ children: children }: { children: any }) => (
-    <ul className=" b-4 list-disc px-4 text-white">{children}</ul>
+    <ul className=" mt-4 list-disc px-4 text-black">{children}</ul>
   ),
   ol: ({ children: children }: { children: any }) => (
-    <ul className="mb-4 list-decimal px-4 text-white">{children}</ul>
+    <ul className="mb-4 mt-4 list-decimal px-4 text-black">{children}</ul>
   ),
   bold: ({ children: children }: { children: any }) => (
-    <strong className=" text-white">{children}</strong>
+    <strong className=" text-black">{children}</strong>
   ),
   italic: ({ children: children }: { children: any }) => (
-    <em className=" text-white">{children}</em>
+    <em className=" text-black">{children}</em>
   ),
   underline: ({ children: children }: { children: any }) => (
-    <u className=" text-white">{children}</u>
+    <u className=" text-black">{children}</u>
   ),
   p: ({ children: children }: { children: any }) => (
-    <p className=" b-4 text-base leading-loose text-white">{children}</p>
+    <p className="b-4 mt-4 text-lg  leading-normal  text-black md:text-xl">
+      {children}
+    </p>
   ),
   blockquote: ({ children: children }: { children: any }) => (
-    <blockquote className="mb-8 border-l-4 pl-5 text-white">
+    <blockquote className="mb-8 border-l-4 pl-5 text-black">
       {children}
     </blockquote>
   ),
@@ -87,22 +120,36 @@ const renderers = {
     </pre>
   ),
   embed: {
-    CodeBlock: ({
-      code,
-      language,
-    }: EmbedProps<{ code: string; language: string }>) => {
+    CodeBlock: ({ code, language }: EmbedProps<code>) => {
+      let [copied, setCopied] = React.useState(false)
+
+      function copy() {
+        console.log('copied')
+        setCopied(true)
+        setTimeout(() => {
+          setCopied(false)
+        }, 2000)
+      }
       return (
-        <pre
-          className={`language-${language}  mb-4 rounded bg-code_block p-2 leading-loose`}
-        >
-          {console.log('language code_block', language)}
-          <code>{code}</code>
-        </pre>
+        <>
+          <div className=" mt-4 flex items-end justify-end rounded-lg bg-link px-2 py-1  text-white hover:bg-title md:px-4 md:py-1">
+            <CopyToClipboard text={code} onCopy={() => copy()}>
+              <button className=" text-base ">
+                {copied ? 'Copied' : 'Copy'}
+              </button>
+            </CopyToClipboard>
+          </div>
+          <pre
+            className={`language-${language} rounded bg-code_block leading-loose`}
+          >
+            <code>{code}</code>
+          </pre>
+        </>
       )
     },
   },
 
-  img: ({ src, altText, handle, height, width }) => (
+  img: ({ src, altText, handle, height, width }: img) => (
     <div className="mb-4 flex w-full justify-center text-white">
       <Image
         src={src}
@@ -121,16 +168,14 @@ function PostDetails({ post: post }: { post: postComplete }) {
     Prism.highlightAll()
   }, [])
 
-  console.log('post.content.references.code.raw.children', post.content)
-
   return (
     <>
-      <div className="mb-8 rounded-lg bg-primary pb-12 shadow-lg lg:p-8">
+      <div className="mb-8 rounded-lg border-2 bg-primary pb-12 shadow-lg lg:p-8">
         <div className="relative mb-6 overflow-hidden shadow-md">
           <img
             src={post.featuredImage.url}
             alt=""
-            className="h-full w-full rounded-t-lg object-cover  object-top shadow-lg lg:rounded-lg"
+            className="h-full max-h-[340px] w-full rounded-t-lg object-cover  object-top shadow-lg lg:rounded-lg"
           />
         </div>
         <div className="px-4 lg:px-0">
@@ -143,11 +188,11 @@ function PostDetails({ post: post }: { post: postComplete }) {
                 className="rounded-full align-middle"
                 src={post.author.image.url}
               />
-              <p className="ml-2 inline align-middle text-lg font-medium text-gray-100">
+              <p className="ml-2 inline align-middle text-lg font-medium text-gray-800">
                 {post.author.name}
               </p>
             </div>
-            <div className="font-medium text-gray-100">
+            <div className="font-medium text-gray-800">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="mr-2 inline h-6 w-6 text-pink-500"
@@ -167,19 +212,9 @@ function PostDetails({ post: post }: { post: postComplete }) {
               </span>
             </div>
           </div>
-          <h1 className="mb-8 text-3xl font-semibold text-white">
+          <h1 className="mb-8 text-3xl font-semibold text-mainTitle">
             {post.title}
           </h1>
-          {/* {post.content.raw.children.map(
-            (typeObj: { children: []; type }, index) => {
-              const children = typeObj.children.map(
-                (item: { text: string }, itemindex) =>
-                  getContentFragment(itemindex, item.text, item)
-              )
-
-              return getContentFragment(index, children, typeObj, typeObj.type)
-            }
-          )} */}
           <div className=" ">
             <RichText
               content={post.content.raw.children}
