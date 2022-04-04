@@ -1,17 +1,26 @@
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 
 import { PostCard, PostWidget, Categories, Social } from '@components/index'
 import { getPosts } from '@services/index'
 
-import {
-  Banner,
-  About,
-  Brand,
-  Services,
-  Projects,
-  Skills,
-  Contact,
-} from '@sections/index'
+const Banner = dynamic(() => import('@sections/Banner'))
+const About = dynamic(() => import('@sections/About'))
+const Brand = dynamic(() => import('@sections/Brand'))
+const Services = dynamic(() => import('@sections/Services'))
+const Projects = dynamic(() => import('@sections/Projects'))
+const Skills = dynamic(() => import('@sections/Skills'))
+const Contact = dynamic(() => import('@sections/Contact'))
+
+// import {
+//   Banner,
+//   About,
+//   Brand,
+//   Services,
+//   Projects,
+//   Skills,
+//   Contact,
+// } from '@sections/index'
 
 export default function Home({ posts }: { posts: any }) {
   return (

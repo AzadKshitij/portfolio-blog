@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { ServiceCard } from '@components/index'
 import Image from 'next/image'
+import { ServiceCard } from '@components/index'
 
 export default function Skills() {
   let [skills] = useState([
@@ -123,12 +123,15 @@ export default function Skills() {
       <div className="flex flex-col flex-wrap space-x-10 md:flex-row">
         <div className="grid grid-flow-row grid-cols-5  gap-8">
           {Object.values(skills).map((item, idx) => (
-            <div className="flex flex-col items-center justify-center">
+            <div
+              className="flex flex-col items-center justify-center"
+              key={idx}
+            >
               <div
                 style={{ backgroundColor: item.bg }}
                 className={`flex h-16 w-16 items-center justify-center overflow-hidden rounded-full`}
               >
-                <Image src={item.uri} height={40} width={40} />
+                <Image src={item.uri} height={40} width={40} alt={item.title} />
               </div>
               <p className=" mt-2 font-roboto text-sm font-normal text-gray-500 ">
                 {item.title}
@@ -138,13 +141,13 @@ export default function Skills() {
         </div>
         <div className="flex flex-col space-y-10">
           {Object.entries(experiences).map(([key, value]) => (
-            <div className="flex flex-row space-x-12">
+            <div className="flex flex-row space-x-12" key={key}>
               <h1 className=" font-montserrat text-lg font-semibold text-blue-600">
                 {key}
               </h1>
               <div className="flex flex-col">
-                {value.map((item) => (
-                  <div className=" mb-5">
+                {value.map((item, idx) => (
+                  <div className=" mb-5" key={idx}>
                     <p className=" font-roboto text-lg font-semibold text-black ">
                       {item.title}
                     </p>

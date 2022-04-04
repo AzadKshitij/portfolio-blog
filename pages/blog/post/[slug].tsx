@@ -1,20 +1,57 @@
 // @ts-ignore
 import React, { FunctionComponent } from 'react'
+import { GetStaticPaths } from 'next'
+import dynamic from 'next/dynamic'
+import { ElementNode } from '@graphcms/rich-text-types'
 
-import { getPosts, getPostDetails } from '../../../services'
+import { getPosts, getPostDetails } from '@services/index'
 
-import {
-  Categories,
-  PostWidget,
-  PostDetails,
-  Author,
-} from '../../../components'
-import { GetStaticPaths, GetStaticProps } from 'next'
+const Categories = dynamic(() => import('@components/Categories'))
+const PostWidget = dynamic(() => import('@components/PostWidget'))
+const PostDetails = dynamic(() => import('@components/PostDetails'))
+const Author = dynamic(() => import('@components/Author'))
 
-import { postComplete } from '../../../types'
+// import {
+//   Categories,
+//   PostWidget,
+//   PostDetails,
+//   Author,
+// } from '../../../components'
 
 type params = {
   slug: string
+}
+
+interface postComplete {
+  author: {
+    bio: string
+    id: string
+    name: string
+    image: {
+      url: string
+    }
+  }
+  createdAt: string
+  title: string
+  slug: string
+  excerpt: string
+  featuredImage: {
+    url: string
+  }
+  categories: [
+    {
+      name: string
+      slug: string
+    }
+  ]
+  content: {
+    raw: {
+      children: ElementNode[]
+    }
+    references: {
+      code: string
+    }
+  }
 }
 
 function Slug({ post: post }: { post: postComplete }) {

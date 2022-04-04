@@ -132,8 +132,14 @@ const renderers = {
       }
       return (
         <>
-          <div className=" mt-4 flex items-end justify-end rounded-lg bg-link px-2 py-1  text-white hover:bg-title md:px-4 md:py-1">
-            <CopyToClipboard text={code} onCopy={() => copy()}>
+          <div className="flex justify-end">
+            {/* mt-4 flex items-end justify-end rounded-lg bg-link px-2 py-1 */}
+            {/* text-white hover:bg-title md:px-4 md:py-1 */}
+            <CopyToClipboard
+              text={code}
+              onCopy={() => copy()}
+              className=" mt-4 cursor-pointer items-end rounded-lg bg-link px-2 py-1 text-center text-white duration-300 hover:bg-title md:px-4 md:py-1"
+            >
               <button className=" text-base ">
                 {copied ? 'Copied' : 'Copy'}
               </button>
