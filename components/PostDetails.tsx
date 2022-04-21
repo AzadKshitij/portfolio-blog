@@ -38,22 +38,22 @@ type code = {
 
 const renderers = {
   h1: ({ children: children }: { children: any }) => (
-    <h1 className="mt-4 text-2xl font-semibold text-black">{children}</h1>
+    <h1 className="mt-6 text-3xl font-bold text-black">{children}</h1>
   ),
   h2: ({ children: children }: { children: any }) => (
-    <h2 className="mt-4 text-xl font-semibold text-black">{children}</h2>
+    <h2 className="mt-6 text-2xl font-bold text-black">{children}</h2>
   ),
   h3: ({ children: children }: { children: any }) => (
-    <h3 className="mt-4 text-lg font-semibold text-black">{children}</h3>
+    <h3 className="mt-6 text-xl font-bold text-black">{children}</h3>
   ),
   h4: ({ children: children }: { children: any }) => (
-    <h4 className="mt-4 text-base font-semibold text-black">{children}</h4>
+    <h4 className="mt-6 text-base font-bold text-black">{children}</h4>
   ),
   h5: ({ children: children }: { children: any }) => (
-    <h5 className="mt-4 text-sm font-semibold text-black">{children}</h5>
+    <h5 className="mt-6 text-sm font-bold text-black">{children}</h5>
   ),
   h6: ({ children: children }: { children: any }) => (
-    <h6 className="mt-4 text-xs font-semibold text-black">{children}</h6>
+    <h6 className="mt-6 text-xs font-bold text-black">{children}</h6>
   ),
   a: ({ children, openInNewTab, href, rel }: a) => {
     if (href.match(/^https?:\/\/|^\/\//i)) {
@@ -81,10 +81,12 @@ const renderers = {
     )
   },
   ul: ({ children: children }: { children: any }) => (
-    <ul className=" mt-4 list-disc px-4 text-black">{children}</ul>
+    <ul className="mt-2 list-disc px-4 text-lg text-black">{children}</ul>
   ),
   ol: ({ children: children }: { children: any }) => (
-    <ul className="mb-4 mt-4 list-decimal px-4 text-black">{children}</ul>
+    <ul className="mb-2 mt-4 list-decimal px-4 text-lg text-black">
+      {children}
+    </ul>
   ),
   bold: ({ children: children }: { children: any }) => (
     <strong className=" text-black">{children}</strong>
@@ -101,21 +103,17 @@ const renderers = {
     </p>
   ),
   blockquote: ({ children: children }: { children: any }) => (
-    <blockquote className="mb-8 border-l-4 pl-5 text-black">
+    <blockquote className="mb-8 mt-2 border-l-4 pl-5 text-lg text-black">
       {children}
     </blockquote>
   ),
   code: ({ children: children }: { children: any }) => (
-    <code
-      className={`language-none mb-4 rounded bg-code_block p-2 leading-loose`}
-    >
+    <code className="language-none mb-4 rounded bg-code_block p-2 leading-loose">
       {children}
     </code>
   ),
   code_block: ({ children: children }: { children: any }) => (
-    <pre
-      className={`language-none  mb-4 rounded bg-code_block p-2 leading-loose`}
-    >
+    <pre className="language-none mb-4 rounded bg-code_block p-2 leading-loose">
       <code>{children}</code>
     </pre>
   ),
@@ -124,7 +122,7 @@ const renderers = {
       let [copied, setCopied] = React.useState(false)
 
       function copy() {
-        console.log('copied')
+        // console.log('copied')
         setCopied(true)
         setTimeout(() => {
           setCopied(false)
@@ -156,7 +154,7 @@ const renderers = {
   },
 
   img: ({ src, altText, handle, height, width }: img) => (
-    <div className="mb-4 flex w-full justify-center text-white">
+    <div className="mb-4 mt-2 flex w-full justify-center text-white">
       <Image
         src={src}
         alt={altText}

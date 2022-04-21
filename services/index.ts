@@ -98,11 +98,11 @@ export const getRecentPosts = async () => {
 }
 
 export const getSimilarPosts = async (categories: string[], slug: string) => {
-  console.log(
-    '🚀 ~ file: index.ts ~ line 101 ~ getSimilarPosts ~ categories',
-    categories
-  )
-  console.log('🚀 ~ file: index.ts ~ line 101 ~ getSimilarPosts ~ slug', slug)
+  // console.log(
+  //   '🚀 ~ file: index.ts ~ line 101 ~ getSimilarPosts ~ categories',
+  //   categories
+  // )
+  // console.log('🚀 ~ file: index.ts ~ line 101 ~ getSimilarPosts ~ slug', slug)
 
   const query = gql`
     query GetPostDetails($slug: String, $categories: [String!]) {
@@ -125,10 +125,10 @@ export const getSimilarPosts = async (categories: string[], slug: string) => {
   `
 
   const response = await request(graphqlAPI, query, { slug, categories })
-  console.log(
-    '🚀 ~ file: index.ts ~ line 127 ~ getSimilarPosts ~ response',
-    response
-  )
+  // console.log(
+  //   '🚀 ~ file: index.ts ~ line 127 ~ getSimilarPosts ~ response',
+  //   response
+  // )
   return response.posts
 }
 

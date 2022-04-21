@@ -22,7 +22,7 @@ export default function Categories() {
         Categories
       </h3>
       {categories.map((category: category, index) => (
-        <Link key={index} href={`/category/${category.slug}`}>
+        <Link key={index} href={`/blog/category/${category.slug}`}>
           <span
             className={`block  cursor-pointer underline-offset-2 transition-all duration-200 ease-in hover:text-title hover:underline  ${
               index === categories.length - 1 ? 'border-b-0' : 'border-b'

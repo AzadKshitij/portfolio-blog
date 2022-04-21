@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import Link from 'next/link'
@@ -17,21 +18,21 @@ function PostWidget({
   const [relatedPosts, setRelatedPosts] = useState([])
 
   useEffect(() => {
-    console.log('fetching related posts')
+    // console.log('fetching related posts')
     if (slug) {
       getSimilarPosts(categories, slug).then((result) => {
-        console.log(
-          '🚀 ~ file: PostWidget.tsx ~ line 25 ~ getSimilarPosts ~ result',
-          result
-        )
+        // console.log(
+        //   '🚀 ~ file: PostWidget.tsx ~ line 25 ~ getSimilarPosts ~ result',
+        //   result
+        // )
         setRelatedPosts(result)
       })
     } else {
       getRecentPosts().then((result) => {
-        console.log(
-          '🚀 ~ file: PostWidget.tsx ~ line 31 ~ getRecentPosts ~ result',
-          result
-        )
+        // console.log(
+        //   '🚀 ~ file: PostWidget.tsx ~ line 31 ~ getRecentPosts ~ result',
+        //   result
+        // )
         setRelatedPosts(result)
       })
     }
@@ -53,7 +54,7 @@ function PostWidget({
               className=" flex w-full cursor-pointer items-center"
             >
               <div className="flex-none">
-                <Image
+                <img
                   // loader={grpahCMSImageLoader}
                   alt={post.title}
                   height="60px"
@@ -67,11 +68,11 @@ function PostWidget({
                 <p className="font-xs text-gray-800">
                   {moment(post.createdAt).format('MMM DD, YYYY')}
                 </p>
-                <text className="text-md text-gray-900">
+                <p className="text-md text-gray-900">
                   <Link href={`blog/post/${post.slug}`} key={index}>
                     {post.title}
                   </Link>
-                </text>
+                </p>
               </div>
             </div>
           </Link>
