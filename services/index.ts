@@ -169,3 +169,24 @@ export const getCategories = async () => {
   const response = await request(graphqlAPI, query)
   return response.categories
 }
+
+export const getPostsWithCategories = async (categories: string[]) => {
+  const query = gql`
+    query GetPostsWithCategories($categories: [String!]) {
+      posts(
+        where: { AND: { categories_some: { slug_in: $categories } } }
+        orderBy: createdAt_DESC
+        last: 12
+      ) {
+        title
+        featuredImage {
+          url
+        }
+        createdAt
+        slug
+      }
+    }
+  `
+  const response = await request(graphqlAPI, query, { categories })
+  return response.posts
+}

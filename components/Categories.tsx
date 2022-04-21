@@ -12,6 +12,7 @@ export default function Categories() {
 
   useEffect(() => {
     getCategories().then((res) => {
+      console.log('Res : =============================', res)
       setCategories(res)
     })
   }, [])

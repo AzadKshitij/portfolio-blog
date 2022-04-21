@@ -4,12 +4,17 @@ import { GetStaticPaths } from 'next'
 import dynamic from 'next/dynamic'
 import { ElementNode } from '@graphcms/rich-text-types'
 
-import { getPosts, getPostDetails } from '@services/index'
+import {
+  getPosts,
+  getPostDetails,
+  getPostsWithCategories,
+} from '@services/index'
 
 const Categories = dynamic(() => import('@components/Categories'))
 const PostWidget = dynamic(() => import('@components/PostWidget'))
 const PostDetails = dynamic(() => import('@components/PostDetails'))
 const Author = dynamic(() => import('@components/Author'))
+const CategoryPostCard = dynamic(() => import('@components/CategoryPostCard'))
 
 // import {
 //   Categories,
@@ -54,25 +59,14 @@ interface postComplete {
   }
 }
 
-function Slug({ post: post }: { post: postComplete }) {
+function Slug({ post: post }: { post: any }) {
   return (
     <>
       <div className="container mx-auto bg-bg px-2 pb-8 md:px-10">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-          <div className="col-span-1 lg:col-span-8">
-            <PostDetails post={post} />
-            <Author author={post.author} />
-            {/* <AdjacentPosts slug={post.slug} createdAt={post.createdAt} /> */}
-          </div>
-          <div className="col-span-1 lg:col-span-4">
-            <div className="relative top-8 lg:sticky">
-              <PostWidget
-                slug={post.slug}
-                categories={post.categories.map((category) => category.slug)}
-              />
-              <Categories />
-            </div>
-          </div>
+          {post.map((post: any, idx: number) => (
+            <CategoryPostCard key={idx} post={post} />
+          ))}
         </div>
       </div>
     </>
@@ -83,7 +77,8 @@ export default Slug
 
 // Fetch data at build time
 export async function getStaticProps({ params: params }: { params: params }) {
-  const data = await getPostDetails(params.slug)
+  const data = await getPostsWithCategories([params.slug])
+  //   console.log('data =========================: ', data)
   return {
     props: {
       post: data,
@@ -91,24 +86,9 @@ export async function getStaticProps({ params: params }: { params: params }) {
   }
 }
 
-// Specify dynamic routes to pre-render pages based on data.
-// The HTML is generated at build time and will be reused on each request.
-// export async function getStaticPaths() {
-//   const posts = await getPosts()
-//   const paths_arr = posts.map((post: { node: { slug: string } }) => {
-//     const slug = post.node.slug
-//     return {
-//       params: { slug },
-//     }
-//   })
-//   return {
-//     paths: paths_arr,
-//     fallback: true,
-//   }
-// }
-
-export const getStaticPaths: GetStaticPaths = async () => {
+export async function getStaticPaths() {
   const posts = await getPosts()
+  //   console.log('posts =========================: ', posts)
   const paths_arr = posts.map((post: { node: { slug: string } }) => {
     const slug = post.node.slug
     return {
@@ -117,6 +97,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   })
   return {
     paths: paths_arr,
-    fallback: false,
+    fallback: true,
   }
 }
