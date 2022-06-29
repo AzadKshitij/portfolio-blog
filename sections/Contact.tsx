@@ -55,7 +55,7 @@ export default function Contact() {
         Take A Coffee & Chat With Me
       </h1>
 
-      <div className="flex flex-row space-x-20">
+      <div className="flex flex-col items-center space-y-5 md:flex-row lg:space-x-20">
         <a
           className=" flex w-72 flex-row items-center justify-center space-x-4 rounded-lg bg-blue-50 px-5 py-2"
           href="mailto:sanodariya.1@iitj.ac.in"
@@ -74,7 +74,7 @@ export default function Contact() {
 
       {/* <div className="flex flex-col flex-wrap items-center justify-center align-middle md:flex-row"></div> */}
 
-      <div className="mt-10 flex flex-row items-center justify-center space-x-4  ">
+      <div className="mt-10 flex flex-row flex-wrap items-center justify-center space-x-4  ">
         <a
           title="Facebook"
           className=" group rounded-full p-4 transition-all duration-300 ease-in  hover:bg-[#a549ad]"

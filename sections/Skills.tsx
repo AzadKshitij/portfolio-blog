@@ -89,14 +89,24 @@ export default function Skills() {
   ])
 
   let [experiences] = useState({
-    '2020': [
+    '2019': [
       {
-        title: 'React',
-        subTitle: 'React',
+        title: 'Python',
+        subTitle: 'Python',
       },
       {
-        title: 'React',
-        subTitle: 'React',
+        title: 'Unity',
+        subTitle: 'Unity',
+      },
+      {
+        title: 'Godot',
+        subTitle: 'Godot',
+      },
+    ],
+    '2020': [
+      {
+        title: 'Javascript',
+        subTitle: 'Javascript',
       },
       {
         title: 'React',
@@ -105,8 +115,12 @@ export default function Skills() {
     ],
     '2021': [
       {
-        title: 'React',
-        subTitle: 'React',
+        title: 'Next JS',
+        subTitle: 'Next JS',
+      },
+      {
+        title: 'Dash Python',
+        subTitle: 'Dash',
       },
     ],
   })
@@ -121,7 +135,7 @@ export default function Skills() {
       </p>
 
       <div className="flex flex-col flex-wrap space-x-10 md:flex-row">
-        <div className="grid grid-flow-row grid-cols-5  gap-8">
+        <div className="grid grid-flow-row grid-cols-3 gap-8 md:grid-cols-6 lg:grid-cols-5">
           {Object.values(skills).map((item, idx) => (
             <div
               className="flex flex-col items-center justify-center"
@@ -139,7 +153,7 @@ export default function Skills() {
             </div>
           ))}
         </div>
-        <div className="flex flex-col space-y-10">
+        <div className="flex flex-col space-y-5">
           {Object.entries(experiences).map(([key, value]) => (
             <div className="flex flex-row space-x-12" key={key}>
               <h1 className=" font-montserrat text-lg font-semibold text-blue-600">
@@ -147,7 +161,7 @@ export default function Skills() {
               </h1>
               <div className="flex flex-col">
                 {value.map((item, idx) => (
-                  <div className=" mb-5" key={idx}>
+                  <div className=" mb-2" key={idx}>
                     <p className=" font-roboto text-lg font-semibold text-black ">
                       {item.title}
                     </p>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import Link from 'next/link'
 import { PhoneIcon } from '@heroicons/react/solid'
@@ -82,7 +83,7 @@ export default function Brand() {
               <div className="flex flex-col items-center gap-y-10 md:items-start">
                 <h3 className="flex flex-row align-middle  text-2xl font-bold">
                   <span className="mr-5 align-middle font-lobster text-9xl font-bold text-black">
-                    2
+                    3
                   </span>
                   <div className="flex flex-col py-5">
                     <span>Year</span>
@@ -90,15 +91,18 @@ export default function Brand() {
                     <span>Working</span>
                   </div>
                 </h3>
-                <div className="mt-20 flex flex-row justify-center self-end">
+                <div className="mt-20 flex flex-row justify-center ">
                   <PhoneIcon
                     className="h-12 w-12   fill-current text-black"
                     aria-hidden="true"
                   />
-                  <p>
+                  <p className="align-middle text-lg font-bold">
+                    +91 7041447901
+                  </p>
+                  {/* <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Consequatur, quisquam.
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </div>

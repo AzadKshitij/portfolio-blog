@@ -4,8 +4,8 @@ import Link from 'next/link'
 export default function Banner() {
   return (
     <section className="mb-10 text-black">
-      <div className="grid grid-cols-1 items-center justify-items-center gap-12 lg:grid-cols-12">
-        <div className="col-span-1 lg:col-span-6">
+      <div className="grid grid-cols-1 items-center justify-items-center gap-12 lg:grid-cols-12 ">
+        <div className="order-last col-span-1 lg:col-span-6">
           <p className=" mt-10 font-rancho text-7xl lg:text-8xl">Hey </p>
           <p className=" my-3   font-lobster text-7xl font-bold uppercase lg:text-8xl">
             I am Kshitij
@@ -33,7 +33,7 @@ export default function Banner() {
           </div>
         </div>
 
-        <div className="col-span-1 lg:col-span-6   ">
+        <div className="col-span-1 lg:order-last lg:col-span-6   ">
           <img
             src="banner/banner-image.png"
             alt="banner-img"

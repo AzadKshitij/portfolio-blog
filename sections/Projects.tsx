@@ -21,25 +21,7 @@ export default function Projects() {
         github: 'github.com',
       },
     ],
-    'UI/UX': [
-      {
-        id: 1,
-        title: 'Astu Blog',
-        uri: '/work/001.png',
-        view: 'google.com',
-        github: 'github.com',
-      },
-    ],
-    'Web App': [
-      {
-        id: 1,
-        title: 'Astu Blog',
-        uri: '/work/001.png',
-        view: 'google.com',
-        github: 'github.com',
-      },
-    ],
-    'Mobile App': [
+    App: [
       {
         id: 1,
         title: 'Astu App',
@@ -47,11 +29,18 @@ export default function Projects() {
         view: 'google.com',
         github: 'github.com',
       },
+      {
+        id: 2,
+        title: 'Screen Recorder',
+        uri: '/work/001.png',
+        view: 'google.com',
+        github: 'github.com',
+      },
     ],
-    'Desktop App': [
+    'UI/UX': [
       {
         id: 1,
-        title: 'Screen Recorder',
+        title: 'Astu Blog',
         uri: '/work/001.png',
         view: 'google.com',
         github: 'github.com',
@@ -68,7 +57,7 @@ export default function Projects() {
 
       <div className="flex w-full flex-col items-center px-2 sm:px-0">
         <Tab.Group>
-          <Tab.List className="mx-20 mb-6 flex flex-row space-x-6 self-center rounded-xl bg-blue-600 p-1">
+          <Tab.List className="flex flex-wrap items-center justify-center space-x-1 self-center rounded-xl bg-blue-600 p-1">
             {Object.keys(categories).map((category) => (
               <Tab
                 key={category}
